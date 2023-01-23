@@ -61,5 +61,10 @@ public class Acceuil_professeur {
 		btnNewButton_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_4.setBounds(173, 229, 131, 23);
 		frame.getContentPane().add(btnNewButton_4);
+		
+		JButton btnNewButton_2 = new JButton("Parametre du compte");
+		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnNewButton_2.setBounds(157, 186, 179, 23);
+		frame.getContentPane().add(btnNewButton_2);
 	}
 }
