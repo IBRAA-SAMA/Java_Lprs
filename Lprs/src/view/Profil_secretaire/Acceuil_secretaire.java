@@ -1,10 +1,10 @@
-package view.Profil_stock;
+package view.Profil_secretaire;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-public class Accueil_stock {
+public class Acceuil_secretaire {
 
 	private JFrame frame;
 
@@ -15,7 +15,7 @@ public class Accueil_stock {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Accueil_stock window = new Accueil_stock();
+					Acceuil_secretaire window = new Acceuil_secretaire();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -27,7 +27,7 @@ public class Accueil_stock {
 	/**
 	 * Create the application.
 	 */
-	public Accueil_stock() {
+	public Acceuil_secretaire() {
 		initialize();
 	}
 
@@ -38,6 +38,7 @@ public class Accueil_stock {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 	}
 
 }
