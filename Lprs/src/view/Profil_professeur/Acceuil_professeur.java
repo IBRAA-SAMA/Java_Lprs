@@ -44,7 +44,7 @@ public class Acceuil_professeur {
 		
 		JButton btnNewButton = new JButton("Profil Professeur");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton.setBounds(141, 21, 163, 23);
+		btnNewButton.setBounds(157, 22, 163, 23);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Afficher les fiches etudiants");
