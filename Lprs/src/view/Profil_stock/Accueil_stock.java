@@ -45,7 +45,7 @@ public class Accueil_stock {
 		
 		JLabel lblNewLabel = new JLabel("Profil Gestionnaire de stock");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel.setBounds(111, 20, 200, 29);
+		lblNewLabel.setBounds(84, 20, 200, 29);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Demande de fourniture");
@@ -64,7 +64,7 @@ public class Accueil_stock {
 		btnParametreDuCompte.setBounds(121, 170, 149, 21);
 		frame.getContentPane().add(btnParametreDuCompte);
 		
-		JButton btnSeDeconecter = new JButton("Se deconecter");
+		JButton btnSeDeconecter = new JButton("Se deconnecter");
 		btnSeDeconecter.setBounds(121, 209, 149, 21);
 		frame.getContentPane().add(btnSeDeconecter);
 	}
