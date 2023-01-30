@@ -70,7 +70,7 @@ public class Connexion {
 		passwordField.setBounds(160, 127, 114, 19);
 		frame.getContentPane().add(passwordField);
 		
-		JLabel lblErreur = new JLabel("<html>Le login/mdp saisi ne correspon pas Ã  un utilisateur</html>");
+		JLabel lblErreur = new JLabel("<html>Le login/mdp saisi ne correspon pas à un utilisateur</html>");
 		lblErreur.setVisible(false);
 		lblErreur.setForeground(Color.RED);
 		lblErreur.setBounds(74, 195, 291, 33);
