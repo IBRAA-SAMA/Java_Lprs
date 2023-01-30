@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
 
-public class Formulaire_inscription_utilisateur {
+public class Formulaire_inscription_secretaire {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -25,7 +25,7 @@ public class Formulaire_inscription_utilisateur {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Formulaire_inscription_utilisateur window = new Formulaire_inscription_utilisateur();
+					Formulaire_inscription_secretaire window = new Formulaire_inscription_secretaire();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +37,7 @@ public class Formulaire_inscription_utilisateur {
 	/**
 	 * Create the application.
 	 */
-	public Formulaire_inscription_utilisateur() {
+	public Formulaire_inscription_secretaire() {
 		initialize();
 	}
 
@@ -52,7 +52,7 @@ public class Formulaire_inscription_utilisateur {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Formulaire Utilisateur");
+		JLabel lblNewLabel = new JLabel("Formulaire Secretaire");
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNewLabel.setBounds(162, 11, 174, 20);
