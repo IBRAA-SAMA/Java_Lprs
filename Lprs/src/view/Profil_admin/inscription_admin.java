@@ -8,6 +8,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import java.awt.Color;
 
 public class inscription_admin {
 
@@ -46,12 +47,16 @@ public class inscription_admin {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setForeground(Color.DARK_GRAY);
+		frame.getContentPane().setBackground(Color.PINK);
 		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 15));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Inscription Admin");
+		lblNewLabel.setBackground(new Color(255, 128, 128));
+		lblNewLabel.setForeground(new Color(64, 64, 64));
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel.setBounds(162, 22, 129, 19);
 		frame.getContentPane().add(lblNewLabel);
@@ -77,6 +82,8 @@ public class inscription_admin {
 		textField_3.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Retour");
+		btnNewButton.setBackground(new Color(255, 128, 128));
+		btnNewButton.setForeground(Color.DARK_GRAY);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.setBounds(179, 229, 89, 23);
 		frame.getContentPane().add(btnNewButton);
@@ -87,26 +94,31 @@ public class inscription_admin {
 		textField_4.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nom");
+		lblNewLabel_1.setForeground(Color.DARK_GRAY);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel_1.setBounds(97, 53, 49, 14);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Prenom");
+		lblNewLabel_2.setForeground(Color.DARK_GRAY);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel_2.setBounds(97, 86, 65, 14);
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Adresse mail");
+		lblNewLabel_3.setForeground(Color.DARK_GRAY);
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_3.setBounds(73, 119, 80, 14);
 		frame.getContentPane().add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Mot de passe");
+		lblNewLabel_4.setForeground(Color.DARK_GRAY);
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_4.setBounds(73, 152, 89, 14);
 		frame.getContentPane().add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Confirmer mdp");
+		lblNewLabel_5.setForeground(Color.DARK_GRAY);
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNewLabel_5.setBounds(73, 182, 96, 14);
 		frame.getContentPane().add(lblNewLabel_5);
