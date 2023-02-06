@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.Color;
 
-public class inscription_admin {
+public class Formulaire_inscription_admin {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -26,7 +26,7 @@ public class inscription_admin {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					inscription_admin window = new inscription_admin();
+					Formulaire_inscription_admin window = new Formulaire_inscription_admin();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,7 +38,7 @@ public class inscription_admin {
 	/**
 	 * Create the application.
 	 */
-	public inscription_admin() {
+	public Formulaire_inscription_admin() {
 		initialize();
 	}
 
