@@ -12,36 +12,26 @@ import model.User;
 public class UserManager {
 	private Database coBdd;
 	private String table = "utilisateur";
+
 	
 	public UserManager() {
 		coBdd = new Database();
 	}
 	
-	public User sauvegarder(User user) throws SQLException {
+	public User Inscription_stock(User user) throws SQLException {
 		String sql;
 		PreparedStatement pstm;
 		//Update
 		if(user.getIdUser()>0) {
-			sql = "UPDATE `"+table+"` SET `nom`=?,`prenom`=?,`mail`=?,`login`=? WHERE id_user=?";
-			pstm = coBdd.getConnection().prepareStatement(sql);
-			pstm.setString(1, user.getNom());
-			pstm.setString(2, user.getPrenom());
-			pstm.setString(3, user.getMail());
-			pstm.setString(4, user.getLogin());
-			pstm.setInt(5, user.getIdUser());
-			pstm.executeUpdate();
-			
-		}
-		//insert
-		else {
-			sql = "INSERT INTO `"+table+"`( `nom`, `prenom`, `mail`, `login`, `mdp`) VALUES (?,?,?,?,md5(?))";
+		
+			sql = "INSERT INTO `"+table+"`( `nom`, `prenom`, `mail`, `login`, `mdp`,`role`) VALUES (?,?,?,?,md5(?),1)";
 			
 			pstm = coBdd.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			pstm.setString(1, user.getNom());
 			pstm.setString(2, user.getPrenom());
 			pstm.setString(3, user.getMail());
-			pstm.setString(4, user.getLogin());
-			pstm.setString(5, user.getMdp());
+			pstm.setString(4, user.getMdp());			
+
 			pstm.executeUpdate();
 		    ResultSet rs = pstm.getGeneratedKeys();
             if(rs.next())
@@ -54,6 +44,9 @@ public class UserManager {
 		
 		return user;
 	}
+	
+	
+	
 	public ArrayList<User> getUsers() {
 		ArrayList<User> users = new ArrayList<User>();
 		User user;
@@ -92,6 +85,7 @@ public class UserManager {
 		
 		return user;
 	}
+	
 	public User connexion(String login, String motDePasse) {
 		User user = null;
 		String sql = "SELECT * FROM "+table+ " WHERE email=? and mdp=?";
@@ -102,7 +96,7 @@ public class UserManager {
 			pstm.setString(2, motDePasse);
 			ResultSet rs = pstm.executeQuery();
 			if (rs.next()) {	
-				user = new User(rs.getInt("id"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("mdp"), rs.getString("mdp"));
+				user = new User(rs.getInt("id"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("mdp"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

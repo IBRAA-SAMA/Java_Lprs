@@ -5,16 +5,17 @@ public class User {
 	private String nom;
 	private String prenom;
 	private String mail;
-	private String login;
 	private String mdp;
+	private String mdp2;
+	private int role;
 	
-	public User(int idUser, String nom, String prenom, String mail, String login, String mdp) {
+
+	public User(int idUser, String nom, String prenom, String mail, String mdp) {
 		super();
 		this.idUser = idUser;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.mail = mail;
-		this.login = login;
 		this.mdp = mdp;
 	}
 	
@@ -44,21 +45,29 @@ public class User {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-	public String getLogin() {
-		return login;
-	}
-	public void setLogin(String login) {
-		this.login = login;
-	}
+	
 	public String getMdp() {
 		return mdp;
 	}
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
-	@Override
-	public String toString() {
-		return "User [" + nom + ", " + prenom + "]";
+	
+	public int getRole() {
+		return role;
 	}
+
+	public void setRole(int role) {
+		this.role = role;
+	}
+	
+	public String getMdp2() {
+		return mdp2;
+	}
+
+	public void setMdp2(String mdp2) {
+		this.mdp2 = mdp2;
+	}
+	
 	
 }
