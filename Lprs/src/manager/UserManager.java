@@ -106,4 +106,11 @@ public class UserManager {
 		return user;
 		
 	}
+	public User Inscription_Admin (String nom, String prenom, String email, String Motdepasse) {
+		return null;
+	}{
+	
+String sql = "INSER INTO `"+table+"`( `nom`, `prenom`, `mail`, `login`, `mdp`) VALUES (?,?,?,?,md5(?))";
+	
+}	
 }

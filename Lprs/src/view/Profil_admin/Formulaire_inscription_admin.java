@@ -9,15 +9,16 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.Color;
+import javax.swing.JPasswordField;
 
-public class inscription_admin {
+public class Formulaire_inscription_admin {
 
 	private JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JPasswordField passwordField;
+	private JPasswordField passwordField_1;
 
 	/**
 	 * Launch the application.
@@ -26,7 +27,7 @@ public class inscription_admin {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					inscription_admin window = new inscription_admin();
+					Formulaire_inscription_admin window = new Formulaire_inscription_admin();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,7 +39,7 @@ public class inscription_admin {
 	/**
 	 * Create the application.
 	 */
-	public inscription_admin() {
+	public Formulaire_inscription_admin() {
 		initialize();
 	}
 
@@ -76,22 +77,12 @@ public class inscription_admin {
 		frame.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(172, 149, 96, 20);
-		frame.getContentPane().add(textField_3);
-		textField_3.setColumns(10);
-		
 		JButton btnNewButton = new JButton("Retour");
 		btnNewButton.setBackground(new Color(255, 128, 128));
 		btnNewButton.setForeground(Color.DARK_GRAY);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.setBounds(179, 229, 89, 23);
 		frame.getContentPane().add(btnNewButton);
-		
-		textField_4 = new JTextField();
-		textField_4.setBounds(172, 180, 96, 20);
-		frame.getContentPane().add(textField_4);
-		textField_4.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nom");
 		lblNewLabel_1.setForeground(Color.DARK_GRAY);
@@ -122,5 +113,13 @@ public class inscription_admin {
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNewLabel_5.setBounds(73, 182, 96, 14);
 		frame.getContentPane().add(lblNewLabel_5);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(172, 149, 96, 20);
+		frame.getContentPane().add(passwordField);
+		
+		passwordField_1 = new JPasswordField();
+		passwordField_1.setBounds(172, 180, 96, 20);
+		frame.getContentPane().add(passwordField_1);
 	}
 }
