@@ -121,5 +121,10 @@ public class Formulaire_inscription_admin {
 		passwordField_1 = new JPasswordField();
 		passwordField_1.setBounds(172, 180, 96, 20);
 		frame.getContentPane().add(passwordField_1);
+		
+		JButton btnNewButton_1 = new JButton("Valider");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnNewButton_1.setBounds(302, 117, 85, 21);
+		frame.getContentPane().add(btnNewButton_1);
 	}
 }
