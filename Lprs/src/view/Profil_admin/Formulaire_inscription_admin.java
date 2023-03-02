@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JTextField;
 
+import database.Database;
 import manager.UserManager;
 import model.User;
 
@@ -18,7 +19,9 @@ import java.awt.Color;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.awt.event.ActionEvent;
 
 public class Formulaire_inscription_admin {
@@ -39,7 +42,9 @@ public class Formulaire_inscription_admin {
 	/**
 	 * Create the application.
 	 */
-	
+	public Formulaire_inscription_admin() {
+		initialize();
+	}
 	
 	public void run() {
 		frame.setVisible(true);
@@ -126,48 +131,42 @@ public class Formulaire_inscription_admin {
 		
 		JButton btnNewButton_1 = new JButton("Valider");
 		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				Bdd bdd = new Bdd();
-				Connection co_bdd = bdd.connexion();
-				System.out.println(textField.getText());
-				try {
-					// Prï¿½paration de la requï¿½te
-					java.sql.Statement stm = co_bdd.createStatement();
-					// Exï¿½cution de la requï¿½te, on stock ï¿½galement la requï¿½te
-					if (textField.getText().equals("")	|| 	textField_1.getText().equals("") || (textField_2.getText().equals("")
-							|| passwordField.getText().equals("") || passwordField_1.getText().equals("")))
-					
-					{
-						 JOptionPane.showMessageDialog(null, "Un des champs est vide !");	
-					
-					}
-					
-					else {
-					res = stm.executeUpdate("INSERT INTO utilisateur (nom, prenom, email, mdp, role, reset_mdp) VALUES ('" + textField.getText() +"','"+
-							textField_1.getText() + "'," + Integer.parseInt(textField_2.getText()) + ",'" + passwordField.getText() + "','"+ 0 + "', '"+ 1 +"');");	
-							
-					JOptionPane.showMessageDialog(null, "Insertion rï¿½ussie ! ");
-					
-					}
-					} catch (SQLException e2) {
-					// TODO Auto-generated catch block
-						System.out.println("ici");
-					e2.printStackTrace();
-					
-					}
-				}
-
-			} catch (SQLException e1) {
-				System.out.println("Erreur");
-				//e.printStackTrace();
-			} catch (NumberFormatException e1) {
-				//e.printStackTrace();
-				System.out.println("Erreur format");
-			}
-				
-			}
+		    @SuppressWarnings("deprecation")
+		    public void actionPerformed(ActionEvent e) {
+		        String nom = textField.getText().trim();
+		        String prenom = textField_1.getText().trim();
+		        String email = textField_2.getText().trim();
+		        String mdp = passwordField.getText().trim();
+		        String mdpConfirmation = passwordField_1.getText().trim();
+		        if (nom.isEmpty() || prenom.isEmpty() || email.isEmpty() || mdp.isEmpty() || mdpConfirmation.isEmpty()) {
+		            JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs !");
+		        } else if (!mdp.equals(mdpConfirmation)) {
+		            JOptionPane.showMessageDialog(null, "Les mots de passe ne correspondent pas !");
+		        } else {
+		            Database bdd = new Database();
+		            Connection co_bdd = bdd.getConnection();
+		            try {
+		            	PreparedStatement stm = co_bdd.prepareStatement(
+		            			"INSERT INTO utilisateur (nom, prenom, email, mdp, date_verif, role, reset_mdp) VALUES (?, ?, ?, md5(?), ?, ?, ?);");
+		            			stm.setString(1, nom);
+		            			stm.setString(2, prenom);
+		            			stm.setString(3, email);
+		            			stm.setString(4, mdp);
+		            			stm.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
+		            			stm.setInt(6, 1);
+		            			stm.setInt(7, 1);
+		                int res = stm.executeUpdate();
+		                if (res == 1) {
+		                    JOptionPane.showMessageDialog(null, "Insertion réussie !");
+		                }
+		            } catch (SQLException ex) {
+		                ex.printStackTrace();
+		            }
+		        }
+		    }
 		});
+
+	
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_1.setBounds(302, 117, 85, 21);
 		frame.getContentPane().add(btnNewButton_1);
