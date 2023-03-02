@@ -42,14 +42,19 @@ public class Choix_creation_profil {
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Admin");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Formulaire_inscription_admin Formulaire_inscription_admin = new Formulaire_inscription_admin();
+				Formulaire_inscription_admin.run();
+			}
+		});
 		btnNewButton.setBounds(172, 54, 85, 21);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnGestionnaireDeStock = new JButton("Gestionnaire de stock");
 		btnGestionnaireDeStock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Formulaire_gestionnairestock Formulaire_gestionnairestock = new Formulaire_gestionnairestock(null);
-				Formulaire_gestionnairestock.run();
+				
 			}
 		});
 		btnGestionnaireDeStock.setBounds(145, 95, 143, 21);

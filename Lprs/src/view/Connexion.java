@@ -103,6 +103,7 @@ public class Connexion {
 						lblErreur.setVisible(true);
 					}else {
 						frame.setVisible(false);
+						
 
 						Accueil_admin Accueil_admin = new Accueil_admin(user);
 						Accueil_admin.run();

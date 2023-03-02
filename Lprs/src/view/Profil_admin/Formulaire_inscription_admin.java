@@ -4,15 +4,26 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
+
+import manager.UserManager;
+import model.User;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
 
 public class Formulaire_inscription_admin {
 
+	private User user;
 	private JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -23,24 +34,17 @@ public class Formulaire_inscription_admin {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Formulaire_inscription_admin window = new Formulaire_inscription_admin();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the application.
 	 */
 	public Formulaire_inscription_admin() {
 		initialize();
+	}
+	
+	public void run() {
+		frame.setVisible(true);
 	}
 
 	/**
@@ -123,8 +127,53 @@ public class Formulaire_inscription_admin {
 		frame.getContentPane().add(passwordField_1);
 		
 		JButton btnNewButton_1 = new JButton("Valider");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Bdd bdd = new Bdd();
+				Connection co_bdd = bdd.connexion();
+				System.out.println(textField.getText());
+				try {
+					// Préparation de la requête
+					java.sql.Statement stm = co_bdd.createStatement();
+					// Exécution de la requête, on stock également la requête
+					if (textField.getText().equals("")	|| 	textField_1.getText().equals("") || (textField_2.getText().equals("")
+							|| passwordField.getText().equals("") || passwordField_1.getText().equals("")))
+					
+					{
+						 JOptionPane.showMessageDialog(null, "Un des champs est vide !");	
+					
+					}
+					
+					else {
+					res = stm.executeUpdate("INSERT INTO utilisateur (nom, prenom, email, mdp, role, reset_mdp) VALUES ('" + textField.getText() +"','"+
+							textField_1.getText() + "'," + Integer.parseInt(textField_2.getText()) + ",'" + passwordField.getText() + "','"+ 0 + "', '"+ 1 +"');");	
+							
+					JOptionPane.showMessageDialog(null, "Insertion réussie ! ");
+					
+					}
+					} catch (SQLException e2) {
+					// TODO Auto-generated catch block
+						System.out.println("ici");
+					e2.printStackTrace();
+					
+					}
+				}
+
+			} catch (SQLException e1) {
+				System.out.println("Erreur");
+				//e.printStackTrace();
+			} catch (NumberFormatException e1) {
+				//e.printStackTrace();
+				System.out.println("Erreur format");
+			}
+				
+			}
+		});
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_1.setBounds(302, 117, 85, 21);
 		frame.getContentPane().add(btnNewButton_1);
 	}
+
+	
 }

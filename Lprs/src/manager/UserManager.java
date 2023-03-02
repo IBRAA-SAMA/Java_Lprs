@@ -18,19 +18,21 @@ public class UserManager {
 		coBdd = new Database();
 	}
 	
-	public User Inscription_stock(User user) throws SQLException {
+	public User Inscription_admin(User user) throws SQLException {
 		String sql;
 		PreparedStatement pstm;
 		//Update
 		if(user.getIdUser()>0) {
 		
-			sql = "INSERT INTO `"+table+"`( `nom`, `prenom`, `mail`, `login`, `mdp`,`role`) VALUES (?,?,?,?,md5(?),1)";
+			sql = "INSERT INTO `"+table+"`( `nom`, `prenom`, `email`, `mdp`,`role`,`reset_mdp`) VALUES (?,?,?,md5(?),0,1)";
 			
 			pstm = coBdd.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			pstm.setString(1, user.getNom());
 			pstm.setString(2, user.getPrenom());
 			pstm.setString(3, user.getMail());
-			pstm.setString(4, user.getMdp());			
+			pstm.setString(4, user.getMdp());
+			pstm.setInt(5, user.getRole());			
+
 
 			pstm.executeUpdate();
 		    ResultSet rs = pstm.getGeneratedKeys();
