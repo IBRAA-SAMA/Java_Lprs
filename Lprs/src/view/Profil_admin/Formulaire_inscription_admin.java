@@ -39,9 +39,7 @@ public class Formulaire_inscription_admin {
 	/**
 	 * Create the application.
 	 */
-	public Formulaire_inscription_admin() {
-		initialize();
-	}
+	
 	
 	public void run() {
 		frame.setVisible(true);
@@ -134,9 +132,9 @@ public class Formulaire_inscription_admin {
 				Connection co_bdd = bdd.connexion();
 				System.out.println(textField.getText());
 				try {
-					// Préparation de la requête
+					// Prï¿½paration de la requï¿½te
 					java.sql.Statement stm = co_bdd.createStatement();
-					// Exécution de la requête, on stock également la requête
+					// Exï¿½cution de la requï¿½te, on stock ï¿½galement la requï¿½te
 					if (textField.getText().equals("")	|| 	textField_1.getText().equals("") || (textField_2.getText().equals("")
 							|| passwordField.getText().equals("") || passwordField_1.getText().equals("")))
 					
@@ -149,7 +147,7 @@ public class Formulaire_inscription_admin {
 					res = stm.executeUpdate("INSERT INTO utilisateur (nom, prenom, email, mdp, role, reset_mdp) VALUES ('" + textField.getText() +"','"+
 							textField_1.getText() + "'," + Integer.parseInt(textField_2.getText()) + ",'" + passwordField.getText() + "','"+ 0 + "', '"+ 1 +"');");	
 							
-					JOptionPane.showMessageDialog(null, "Insertion réussie ! ");
+					JOptionPane.showMessageDialog(null, "Insertion rï¿½ussie ! ");
 					
 					}
 					} catch (SQLException e2) {
