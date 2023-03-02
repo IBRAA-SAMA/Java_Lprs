@@ -124,6 +124,12 @@ public class Formulaire_professeur {
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_5.setBounds(71, 174, 113, 14);
 		frame.getContentPane().add(lblNewLabel_5);
+		
+		JButton btnNewButton_1 = new JButton("Valider");
+		btnNewButton_1.setBackground(Color.DARK_GRAY);
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnNewButton_1.setBounds(323, 105, 89, 23);
+		frame.getContentPane().add(btnNewButton_1);
 	}
 
 }

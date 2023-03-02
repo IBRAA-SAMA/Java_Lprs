@@ -118,5 +118,12 @@ public class Formulaire_inscription_secretaire {
 		passwordField_1 = new JPasswordField();
 		passwordField_1.setBounds(193, 192, 96, 20);
 		frame.getContentPane().add(passwordField_1);
+		
+		JButton btnNewButton_1 = new JButton("Valider");
+		btnNewButton_1.setForeground(Color.DARK_GRAY);
+		btnNewButton_1.setBackground(Color.WHITE);
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnNewButton_1.setBounds(324, 116, 89, 23);
+		frame.getContentPane().add(btnNewButton_1);
 	}
 }
