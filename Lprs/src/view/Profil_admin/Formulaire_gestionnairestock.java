@@ -30,6 +30,8 @@ public class Formulaire_gestionnairestock {
 	private JLabel lblPasswordConf;
 	private JLabel lblPassword;
 	private JTextField textRole;
+	private JTextField textField;
+	private JTextField textField_1;
 	
 	public void run() {
 		frame.setVisible(true);
@@ -38,42 +40,13 @@ public class Formulaire_gestionnairestock {
 	/**
 	 * Create the application.
 	 */
-	public Formulaire_gestionnairestock(User user) {
+	public Formulaire_gestionnairestock() {
 		initialize();
-		this.user = user;
-		this.txtNom.setText(user.getNom());
-		this.txtPrenom.setText(user.getPrenom());
-		this.txtEmail.setText(user.getMail());
-		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(169, 170, 96, 19);
-		frame.getContentPane().add(passwordField);
-		
-		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(169, 203, 96, 19);
-		frame.getContentPane().add(passwordField_1);
-		
-		textRole = new JTextField();
-		textRole.setBounds(169, 233, 96, 19);
-		frame.getContentPane().add(textRole);
-		textRole.setColumns(10);
-		if(user.getIdUser()>0) {
-			this.passwordField_1.setVisible(false);
-			this.lblPasswordConf.setVisible(false);
-			this.passwordField.setVisible(false);
-			this.lblPassword.setVisible(false);
-		}else {
-			this.passwordField_1.setVisible(true);
-			this.lblPasswordConf.setVisible(true);
-			this.passwordField.setVisible(true);
-			this.lblPassword.setVisible(true);
-		}
-
-		
-
-		
-
 	}
+		
+		
+
+		
 
 	/**
 	 * Initialize the contents of the frame.
@@ -131,8 +104,15 @@ public class Formulaire_gestionnairestock {
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Retour");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Choix_creation_profil Choix_creation_profil = new Choix_creation_profil();
+				Choix_creation_profil.run();
+			}
+		});
 		btnNewButton_1.setBounds(321, 184, 89, 23);
 		frame.getContentPane().add(btnNewButton_1);
+		
 		
 		JLabel lblPassword = new JLabel("Mot de passe");
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -144,9 +124,14 @@ public class Formulaire_gestionnairestock {
 		lblNewLabel_5.setBounds(10, 207, 149, 14);
 		frame.getContentPane().add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_6 = new JLabel("Role");
-		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_6.setBounds(10, 233, 49, 14);
-		frame.getContentPane().add(lblNewLabel_6);
+		textField = new JTextField();
+		textField.setBounds(169, 174, 96, 20);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(169, 206, 96, 20);
+		frame.getContentPane().add(textField_1);
+		textField_1.setColumns(10);
 	}
 }

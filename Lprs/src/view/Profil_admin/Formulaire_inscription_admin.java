@@ -85,6 +85,12 @@ public class Formulaire_inscription_admin {
 		textField_2.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Retour");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Choix_creation_profil Choix_creation_profil = new Choix_creation_profil();
+				Choix_creation_profil.run();
+			}
+		});
 		btnNewButton.setBackground(new Color(255, 128, 128));
 		btnNewButton.setForeground(Color.DARK_GRAY);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -157,7 +163,7 @@ public class Formulaire_inscription_admin {
 		            			stm.setInt(7, 1);
 		                int res = stm.executeUpdate();
 		                if (res == 1) {
-		                    JOptionPane.showMessageDialog(null, "Insertion réussie !");
+		                    JOptionPane.showMessageDialog(null, "Insertion rï¿½ussie !");
 		                }
 		            } catch (SQLException ex) {
 		                ex.printStackTrace();

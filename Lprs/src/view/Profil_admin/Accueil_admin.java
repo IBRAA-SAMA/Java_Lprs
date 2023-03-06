@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import model.User;
+import view.Connexion;
 
 import java.awt.Font;
 import javax.swing.JButton;
@@ -26,7 +27,7 @@ public class Accueil_admin {
 		initialize();
 	}
 	
-	public static void run() {
+	public void run() {
 		
 		frame.setVisible(true);
 
@@ -68,6 +69,12 @@ public class Accueil_admin {
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Se deconnecter");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Connexion Connexion = new Connexion();
+				Connexion.run();
+			}
+		});
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnNewButton_2.setBounds(137, 201, 152, 25);
 		frame.getContentPane().add(btnNewButton_2);

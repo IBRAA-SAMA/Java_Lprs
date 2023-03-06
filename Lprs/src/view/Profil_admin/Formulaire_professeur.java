@@ -8,6 +8,8 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.UIManager;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Formulaire_professeur {
 
@@ -73,6 +75,12 @@ public class Formulaire_professeur {
 		textField_3.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Retour");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Choix_creation_profil Choix_creation_profil = new Choix_creation_profil();
+				Choix_creation_profil.run();
+			}
+		});
 		btnNewButton.setBackground(Color.BLACK);
 		btnNewButton.setForeground(Color.DARK_GRAY);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
