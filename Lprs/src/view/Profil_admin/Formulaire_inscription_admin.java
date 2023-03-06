@@ -131,41 +131,35 @@ public class Formulaire_inscription_admin {
 		
 		JButton btnNewButton_1 = new JButton("Valider");
 		btnNewButton_1.addActionListener(new ActionListener() {
-		    @SuppressWarnings("deprecation")
 		    public void actionPerformed(ActionEvent e) {
-		        String nom = textField.getText().trim();
-		        String prenom = textField_1.getText().trim();
-		        String email = textField_2.getText().trim();
-		        String mdp = passwordField.getText().trim();
-		        String mdpConfirmation = passwordField_1.getText().trim();
-		        if (nom.isEmpty() || prenom.isEmpty() || email.isEmpty() || mdp.isEmpty() || mdpConfirmation.isEmpty()) {
-		            JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs !");
-		        } else if (!mdp.equals(mdpConfirmation)) {
-		            JOptionPane.showMessageDialog(null, "Les mots de passe ne correspondent pas !");
+		        
+		    	
+		    	String nom = textField.getText();
+		        String prenom = textField_1.getText();
+		        String email = textField_2.getText();
+		        String mdp = new String(passwordField.getPassword());
+		        String confirmationMdp = new String(passwordField_1.getPassword());
+
+		        
+		        User user = new User();
+		        UserManager userManager = new UserManager();
+		        User Inscription_admin = null;
+				try {
+					Inscription_admin = userManager.Inscription_admin(user);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		        if (Inscription_admin != null) {
+		            JOptionPane.showMessageDialog(frame, "Inscription réussie !");
 		        } else {
-		            Database bdd = new Database();
-		            Connection co_bdd = bdd.getConnection();
-		            try {
-		            	PreparedStatement stm = co_bdd.prepareStatement(
-		            			"INSERT INTO utilisateur (nom, prenom, email, mdp, date_verif, role, reset_mdp) VALUES (?, ?, ?, md5(?), ?, ?, ?);");
-		            			stm.setString(1, nom);
-		            			stm.setString(2, prenom);
-		            			stm.setString(3, email);
-		            			stm.setString(4, mdp);
-		            			stm.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
-		            			stm.setInt(6, 1);
-		            			stm.setInt(7, 1);
-		                int res = stm.executeUpdate();
-		                if (res == 1) {
-		                    JOptionPane.showMessageDialog(null, "Insertion réussie !");
-		                }
-		            } catch (SQLException ex) {
-		                ex.printStackTrace();
-		            }
+		            JOptionPane.showMessageDialog(frame, "L'inscription a échoué. Veuillez réessayer.");
 		        }
 		    }
 		});
 
+
+		
 	
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_1.setBounds(302, 117, 85, 21);
