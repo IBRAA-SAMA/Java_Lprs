@@ -81,7 +81,7 @@ public class Formulaire_professeur {
 				Choix_creation_profil.run();
 			}
 		});
-		btnNewButton.setBackground(Color.BLACK);
+		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.setForeground(Color.DARK_GRAY);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNewButton.setBounds(191, 229, 89, 23);
@@ -124,7 +124,8 @@ public class Formulaire_professeur {
 		frame.getContentPane().add(lblNewLabel_5);
 		
 		JButton btnNewButton_1 = new JButton("Valider");
-		btnNewButton_1.setBackground(Color.DARK_GRAY);
+		btnNewButton_1.setForeground(Color.DARK_GRAY);
+		btnNewButton_1.setBackground(Color.WHITE);
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_1.setBounds(323, 105, 89, 23);
 		frame.getContentPane().add(btnNewButton_1);

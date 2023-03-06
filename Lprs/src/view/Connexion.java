@@ -55,11 +55,13 @@ public class Connexion {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(255, 128, 64));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JLabel lblLogin = new JLabel("Login");
+		lblLogin.setForeground(Color.WHITE);
 		lblLogin.setBounds(160, 42, 114, 15);
 		frame.getContentPane().add(lblLogin);
 
@@ -69,6 +71,7 @@ public class Connexion {
 		textLogin.setColumns(10);
 
 		JLabel lblPassword = new JLabel("Mot de passe");
+		lblPassword.setForeground(Color.WHITE);
 		lblPassword.setBounds(160, 100, 114, 15);
 		frame.getContentPane().add(lblPassword);
 
@@ -76,13 +79,15 @@ public class Connexion {
 		passwordField.setBounds(160, 127, 114, 19);
 		frame.getContentPane().add(passwordField);
 
-		JLabel lblErreur = new JLabel("<html>Le login/mdp saisi ne correspon pas à un utilisateur</html>");
+		JLabel lblErreur = new JLabel("<html>Le login/mdp saisi ne correspon pas ï¿½ un utilisateur</html>");
 		lblErreur.setVisible(false);
 		lblErreur.setForeground(Color.RED);
 		lblErreur.setBounds(74, 195, 291, 33);
 		frame.getContentPane().add(lblErreur);
 
 		JButton btnEnregistrer = new JButton("Connexion");
+		btnEnregistrer.setForeground(Color.DARK_GRAY);
+		btnEnregistrer.setBackground(Color.WHITE);
 		btnEnregistrer.setBounds(160, 158, 117, 25);
 		frame.getContentPane().add(btnEnregistrer);
 
