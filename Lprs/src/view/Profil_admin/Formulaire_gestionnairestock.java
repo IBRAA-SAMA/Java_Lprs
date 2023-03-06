@@ -31,6 +31,9 @@ public class Formulaire_gestionnairestock {
 	private JLabel lblPassword;
 	private JTextField textRole;
 	
+	public void run() {
+		frame.setVisible(true);
+	}
 
 	/**
 	 * Create the application.
@@ -121,40 +124,6 @@ public class Formulaire_gestionnairestock {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				UserManager userManager= new UserManager();
-				try {
-					user.setNom(txtNom.getText());
-					user.setPrenom(txtPrenom.getText());
-					user.setMail(txtEmail.getText());
-					if(passwordField.isVisible()) {
-						String password = String.valueOf(passwordField.getPassword());
-						String confPassword = String.valueOf(passwordField_1.getPassword());
-						if(password.equals(confPassword)) {
-							user.setMdp(password);
-							userManager.Inscription_stock(user);
-							
-							Connexion connexion = new  Connexion();
-							Connexion.run();
-							
-							
-							frame.setVisible(false);
-						}else {
-							System.out.println("erreur mdp ");
-						}
-					}else {
-						userManager.Inscription_stock(user);
-						Connexion connexion = new  Connexion();
-						Connexion.run();
-						frame.setVisible(false);
-					}
-
-				} catch (SQLException e1) {
-					System.out.println("Erreur");
-					//e.printStackTrace();
-				} catch (NumberFormatException e1) {
-					//e.printStackTrace();
-					System.out.println("Erreur format");
-				}
 				
 			}
 		});

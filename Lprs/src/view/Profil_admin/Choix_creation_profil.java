@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
-import java.awt.Font;UI
+import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -61,10 +61,23 @@ public class Choix_creation_profil {
 		frame.getContentPane().add(btnGestionnaireDeStock);
 		
 		JButton btnProfesseur = new JButton("Professeur");
+		btnProfesseur.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Formulaire_professeur Formulaire_professeur = new Formulaire_professeur();
+				Formulaire_professeur.run();
+			}
+			
+		});
 		btnProfesseur.setBounds(172, 135, 85, 21);
 		frame.getContentPane().add(btnProfesseur);
 		
 		JButton btnNewButton_1_1 = new JButton("S\u00E9cretaire");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Formulaire_inscription_secretaire Formulaire_inscription_secretaire = new Formulaire_inscription_secretaire();
+				Formulaire_inscription_secretaire.run();
+			}
+		});
 		btnNewButton_1_1.setBounds(172, 178, 85, 21);
 		frame.getContentPane().add(btnNewButton_1_1);
 		

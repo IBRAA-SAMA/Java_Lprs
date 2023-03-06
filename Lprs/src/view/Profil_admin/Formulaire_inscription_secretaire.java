@@ -22,18 +22,10 @@ public class Formulaire_inscription_secretaire {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Formulaire_inscription_secretaire window = new Formulaire_inscription_secretaire();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public void run() {
+		frame.setVisible(true);
 	}
+
 
 	/**
 	 * Create the application.
