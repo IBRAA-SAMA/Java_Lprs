@@ -165,7 +165,7 @@ public class Formulaire_inscription_admin {
 
 		                // Ajout de l'utilisateur dans la base de données
 		                UserManager userManager = new UserManager(connection);
-		                userManager.Inscription_admin(user, confirmPassword, confirmPassword, confirmPassword, confirmPassword);
+		                userManager.Inscription_admin(user, nom, prenom, email, password);
 
 		                JOptionPane.showMessageDialog(null, "Inscription réussie.");
 

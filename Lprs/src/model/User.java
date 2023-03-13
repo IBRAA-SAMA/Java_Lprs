@@ -72,7 +72,7 @@ public class User {
 		this.mdp2 = mdp2;
 	}
 
-	public void setData_verif(Timestamp date_verif) {
+	public void setDate_verif(Timestamp date_verif) {
 		   this.date_verif = date_verif; 
 		}
 
