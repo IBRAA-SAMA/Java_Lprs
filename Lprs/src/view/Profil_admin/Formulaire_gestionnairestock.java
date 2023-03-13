@@ -23,6 +23,8 @@ import java.sql.Timestamp;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import javax.swing.JComboBox;
+import java.awt.Color;
+import javax.swing.JDesktopPane;
 
 public class Formulaire_gestionnairestock {
 
@@ -56,6 +58,7 @@ public class Formulaire_gestionnairestock {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(192, 192, 192));
 		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 12));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,26 +80,32 @@ public class Formulaire_gestionnairestock {
 		txtEmail.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Formulaire Gestionnaire stock");
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNewLabel.setBounds(126, 11, 233, 41);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nom");
+		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_1.setBounds(10, 64, 49, 14);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Prenom");
+		lblNewLabel_2.setForeground(Color.WHITE);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_2.setBounds(10, 95, 49, 14);
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Email");
+		lblNewLabel_3.setForeground(Color.WHITE);
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_3.setBounds(10, 136, 49, 14);
 		frame.getContentPane().add(lblNewLabel_3);
 		
 		JButton btnNewButton = new JButton("Valider");
+		btnNewButton.setBackground(Color.LIGHT_GRAY);
+		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		    	String nom = txtNom.getText();
@@ -147,15 +156,18 @@ public class Formulaire_gestionnairestock {
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Retour");
+		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.setBounds(321, 184, 89, 23);
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JLabel lblPassword = new JLabel("Mot de passe");
+		lblPassword.setForeground(Color.WHITE);
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblPassword.setBounds(10, 175, 96, 14);
 		frame.getContentPane().add(lblPassword);
 		
 		JLabel lblNewLabel_5 = new JLabel("Confirmer mot de passe");
+		lblNewLabel_5.setForeground(Color.WHITE);
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_5.setBounds(10, 207, 149, 14);
 		frame.getContentPane().add(lblNewLabel_5);
