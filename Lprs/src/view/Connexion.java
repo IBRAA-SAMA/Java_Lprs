@@ -21,7 +21,7 @@ public class Connexion {
 	private static JFrame frame;
 	private JTextField textLogin;
 	private JPasswordField passwordField;
-	private UserManager userManager = new UserManager();
+	private UserManager userManager = new UserManager(null);
 	/**
 	 * Launch the application.
 	 */
@@ -76,7 +76,7 @@ public class Connexion {
 		passwordField.setBounds(160, 127, 114, 19);
 		frame.getContentPane().add(passwordField);
 
-		JLabel lblErreur = new JLabel("<html>Le login/mdp saisi ne correspon pas à un utilisateur</html>");
+		JLabel lblErreur = new JLabel("<html>Le login/mdp saisi ne correspon pas ï¿½ un utilisateur</html>");
 		lblErreur.setVisible(false);
 		lblErreur.setForeground(Color.RED);
 		lblErreur.setBounds(74, 195, 291, 33);

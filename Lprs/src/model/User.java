@@ -1,5 +1,7 @@
 package model;
 
+import java.sql.Timestamp;
+
 public class User {
 	private int idUser;
 	private String nom;
@@ -8,6 +10,7 @@ public class User {
 	private String mdp;
 	private String mdp2;
 	private int role;
+	private Timestamp date_verif;
 	
 
 	public User(int idUser, String nom, String prenom, String mail, String mdp) {
@@ -68,6 +71,11 @@ public class User {
 	public void setMdp2(String mdp2) {
 		this.mdp2 = mdp2;
 	}
+
+	public void setData_verif(Timestamp date_verif) {
+		   this.date_verif = date_verif; 
+		}
+
 	
 	
 }

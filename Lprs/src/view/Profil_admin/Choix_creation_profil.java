@@ -54,6 +54,8 @@ public class Choix_creation_profil {
 		JButton btnGestionnaireDeStock = new JButton("Gestionnaire de stock");
 		btnGestionnaireDeStock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Formulaire_gestionnairestock Formulaire_gestionnairestock = new Formulaire_gestionnairestock();
+				Formulaire_gestionnairestock.run();
 				
 			}
 		});

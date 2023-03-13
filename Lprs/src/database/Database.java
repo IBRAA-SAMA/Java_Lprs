@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Database {
-	private String url = "jdbc:mysql://localhost/java_lprs?serverTimezone=UTC";
-	private String user = "root";
-	private String password = "";
+	private static String url = "jdbc:mysql://localhost/java_lprs?serverTimezone=UTC";
+	private static String user = "root";
+	private static String password = "";
 	
 	public Connection getConnection() {
 		

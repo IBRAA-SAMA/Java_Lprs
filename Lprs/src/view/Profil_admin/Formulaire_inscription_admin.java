@@ -143,41 +143,40 @@ public class Formulaire_inscription_admin {
 		    	String nom = textField.getText();
 		        String prenom = textField_1.getText();
 		        String email = textField_2.getText();
-		        String mdp = new String(passwordField.getPassword());
-		        String confirmationMdp = new String(passwordField_1.getPassword());
+		        String password = new String(passwordField.getPassword());
+		        String confirmPassword = new String(passwordField_1.getPassword());
 
-		        
-		        User user = new User();
-		        UserManager userManager = new UserManager();
-		        User Inscription_admin = null;
-				try {
-					Inscription_admin = userManager.Inscription_admin(user);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-		        if (Inscription_admin != null) {
-		            JOptionPane.showMessageDialog(frame, "Inscription réussie !");
+		        if (nom.equals("") || prenom.equals("") || email.equals("") || password.equals("") || confirmPassword.equals("")) {
+		            JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs.");
+		        } else if (!password.equals(confirmPassword)) {
+		            JOptionPane.showMessageDialog(null, "Les mots de passe ne correspondent pas.");
 		        } else {
-		            JOptionPane.showMessageDialog(frame, "L'inscription a échoué. Veuillez réessayer.");
-		            Database bdd = new Database();
-		            Connection co_bdd = bdd.getConnection();
 		            try {
-		            	PreparedStatement stm = co_bdd.prepareStatement(
-		            			"INSERT INTO utilisateur (nom, prenom, email, mdp, date_verif, role, reset_mdp) VALUES (?, ?, ?, md5(?), ?, ?, ?);");
-		            			stm.setString(1, nom);
-		            			stm.setString(2, prenom);
-		            			stm.setString(3, email);
-		            			stm.setString(4, mdp);
-		            			stm.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
-		            			stm.setInt(6, 1);
-		            			stm.setInt(7, 1);
-		                int res = stm.executeUpdate();
-		                if (res == 1) {
-		                    JOptionPane.showMessageDialog(null, "Insertion rï¿½ussie !");
-		                }
+		                // Connection Ã  la base de donnÃ©es
+		            	Database database = new Database();
+		            	Connection connection = database.getConnection();
+
+		                // CrÃ©ation de l'utilisateur
+		                user = new User();
+		                user.setNom(nom);
+		                user.setPrenom(prenom);
+		                user.setMail(email);
+		                user.setMdp(password);
+
+		                // Ajout de l'utilisateur dans la base de donnÃ©es
+		                UserManager userManager = new UserManager(connection);
+		                userManager.Inscription_admin(user, confirmPassword, confirmPassword, confirmPassword, confirmPassword);
+
+		                JOptionPane.showMessageDialog(null, "Inscription rÃ©ussie.");
+
+		                // Retour au choix de crÃ©ation de profil
+		                Choix_creation_profil Choix_creation_profil = new Choix_creation_profil();
+		                Choix_creation_profil.run();
+		                frame.dispose();
+
 		            } catch (SQLException ex) {
 		                ex.printStackTrace();
+		                JOptionPane.showMessageDialog(null, "Erreur lors de l'inscription.");
 		            }
 		        }
 		    }

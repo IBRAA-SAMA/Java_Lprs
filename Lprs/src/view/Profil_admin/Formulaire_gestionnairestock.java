@@ -5,15 +5,21 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
+import database.Database;
 import manager.UserManager;
 import model.User;
 import view.Connexion;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import javax.swing.JComboBox;
@@ -29,7 +35,9 @@ public class Formulaire_gestionnairestock {
 	private JPasswordField passwordField_1;
 	private JLabel lblPasswordConf;
 	private JLabel lblPassword;
-	private JTextField textRole;
+	
+	private JPasswordField passwordField_2;
+	private JPasswordField passwordField_3;
 	
 	public void run() {
 		frame.setVisible(true);
@@ -38,40 +46,8 @@ public class Formulaire_gestionnairestock {
 	/**
 	 * Create the application.
 	 */
-	public Formulaire_gestionnairestock(User user) {
+	public Formulaire_gestionnairestock() {
 		initialize();
-		this.user = user;
-		this.txtNom.setText(user.getNom());
-		this.txtPrenom.setText(user.getPrenom());
-		this.txtEmail.setText(user.getMail());
-		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(169, 170, 96, 19);
-		frame.getContentPane().add(passwordField);
-		
-		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(169, 203, 96, 19);
-		frame.getContentPane().add(passwordField_1);
-		
-		textRole = new JTextField();
-		textRole.setBounds(169, 233, 96, 19);
-		frame.getContentPane().add(textRole);
-		textRole.setColumns(10);
-		if(user.getIdUser()>0) {
-			this.passwordField_1.setVisible(false);
-			this.lblPasswordConf.setVisible(false);
-			this.passwordField.setVisible(false);
-			this.lblPassword.setVisible(false);
-		}else {
-			this.passwordField_1.setVisible(true);
-			this.lblPasswordConf.setVisible(true);
-			this.passwordField.setVisible(true);
-			this.lblPassword.setVisible(true);
-		}
-
-		
-
-		
 
 	}
 
@@ -123,6 +99,46 @@ public class Formulaire_gestionnairestock {
 		JButton btnNewButton = new JButton("Valider");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+		    	String nom = txtNom.getText();
+		        String prenom = txtPrenom.getText();
+		        String email = txtEmail.getText();
+		        String mdp = new String(passwordField_2.getPassword());
+		        String confirmationMdp = new String(passwordField_3.getPassword());
+
+		        
+		        User user = new User();
+		        UserManager userManager = new UserManager();
+		        User Inscription_admin = null;
+				try {
+					Inscription_admin = userManager.Inscription_admin(user);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		        if (Inscription_admin != null) {
+		            JOptionPane.showMessageDialog(frame, "Inscription r�ussie !");
+		        } else {
+		            JOptionPane.showMessageDialog(frame, "L'inscription a �chou�. Veuillez r�essayer.");
+		            Database bdd = new Database();
+		            Connection co_bdd = bdd.getConnection();
+		            try {
+		            	PreparedStatement stm = co_bdd.prepareStatement(
+		            			"INSERT INTO utilisateur (nom, prenom, email, mdp, date_verif, role, reset_mdp) VALUES (?, ?, ?, md5(?), ?, ?, ?);");
+		            			stm.setString(1, nom);
+		            			stm.setString(2, prenom);
+		            			stm.setString(3, email);
+		            			stm.setString(4, mdp);
+		            			stm.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
+		            			stm.setInt(6, 2);
+		            			stm.setInt(7, 1);
+		                int res = stm.executeUpdate();
+		                if (res == 1) {
+		                    JOptionPane.showMessageDialog(null, "Insertion r�ussie !");
+		                }
+		            } catch (SQLException ex) {
+		                ex.printStackTrace();
+		            }
+		        }
 				
 				
 			}
@@ -144,9 +160,12 @@ public class Formulaire_gestionnairestock {
 		lblNewLabel_5.setBounds(10, 207, 149, 14);
 		frame.getContentPane().add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_6 = new JLabel("Role");
-		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_6.setBounds(10, 233, 49, 14);
-		frame.getContentPane().add(lblNewLabel_6);
+		passwordField_2 = new JPasswordField();
+		passwordField_2.setBounds(169, 169, 96, 20);
+		frame.getContentPane().add(passwordField_2);
+		
+		passwordField_3 = new JPasswordField();
+		passwordField_3.setBounds(169, 206, 96, 20);
+		frame.getContentPane().add(passwordField_3);
 	}
 }
