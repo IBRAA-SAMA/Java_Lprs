@@ -7,8 +7,12 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import manager.UserManager;
+import model.Session;
 import model.User;
 import view.Profil_admin.Accueil_admin;
+import view.Profil_professeur.Acceuil_professeur;
+import view.Profil_secretaire.Accueil_secretaire;
+import view.Profil_stock.Accueil_stock;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -16,12 +20,12 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JPasswordField;
 
-public class Connexion {
+public class Connexion extends JFrame {
 
 	private static JFrame frame;
 	private JTextField textLogin;
 	private JPasswordField passwordField;
-	private UserManager userManager = new UserManager(null);
+	private UserManager userManager = new UserManager();
 	/**
 	 * Launch the application.
 	 */
@@ -30,30 +34,16 @@ public class Connexion {
 			public void run() {
 				try {
 					Connexion window = new Connexion();
-					window.frame.setVisible(true);
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-	
-	public static void run() {
-		frame.setVisible(true);
-		
-	}
 
-	/**
-	 * Create the application.
-	 */
+
 	public Connexion() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -89,27 +79,34 @@ public class Connexion {
 		btnEnregistrer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-
-				lblErreur.setVisible(false);
-
-				String login,password;
+				String login, password;
 				login = textLogin.getText();
 				password = String.valueOf(passwordField.getPassword());
-				//System.out.println(password);
 
+				User user = userManager.Connexion(login, password);
+				if(user == null) {
+				    lblErreur.setVisible(true);
+				} else {
+					Session session = Session.createSession(user);
 
-				User user = userManager.connexion(login,password);
-					if(user == null) {
-						lblErreur.setVisible(true);
-					}else {
-						frame.setVisible(false);
-						
-
-						Accueil_admin Accueil_admin = new Accueil_admin(user);
-						Accueil_admin.run();
-
-					}
+				    frame.setVisible(false);
+				    int role = user.getRole();
+				    if(role == 0) {
+				        Accueil_admin accueil_admin = new Accueil_admin(user);
+				        accueil_admin.run();
+				    } else if(role == 1) {
+				        Acceuil_professeur accueil_professeur = new Acceuil_professeur(user);
+				        accueil_professeur.run();
+				    } else if(role == 2) {
+				        Accueil_stock accueil_stock = new Accueil_stock(user);
+				        accueil_stock.run();
+				    } else if(role == 3) {
+				        Accueil_secretaire accueil_secretaire = new Accueil_secretaire(user);
+				        accueil_secretaire.run();
+				    }
 				
+				}
+
 
 
 
@@ -117,7 +114,14 @@ public class Connexion {
 		});
 	}
 
-	
+
+	public static void run() {
+		// TODO Auto-generated method stub
+		frame.setVisible(true);
+
+	}
+
+
 
 
 }

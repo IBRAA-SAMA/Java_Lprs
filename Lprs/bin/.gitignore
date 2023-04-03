@@ -1,5 +1,4 @@
-/database/
+/view/
 /manager/
 /model/
-/view/
-*.class
+/database/

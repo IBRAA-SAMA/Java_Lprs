@@ -3,32 +3,40 @@ package model;
 import java.sql.Timestamp;
 
 public class User {
-	private int idUser;
+	private static int id;
 	private String nom;
 	private String prenom;
-	private String mail;
+	private String email;
 	private String mdp;
 	private String mdp2;
 	private int role;
 	private Timestamp date_verif;
 	
 
-	public User(int idUser, String nom, String prenom, String mail, String mdp) {
+	public User(int idUser, String nom, String prenom, String email, String mdp, int role) {
 		super();
-		this.idUser = idUser;
+		this.id = idUser;
 		this.nom = nom;
 		this.prenom = prenom;
-		this.mail = mail;
+		this.email = email;
 		this.mdp = mdp;
+		this.role = role;
+
 	}
+	
+	public User(int idUser) {
+		super();
+		this.id = idUser;
+	}
+
 	
 	public User() {}
 	
-	public int getIdUser() {
-		return idUser;
+	public static int getIdUser() {
+		return id;
 	}
 	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+		this.id = idUser;
 	}
 	public String getNom() {
 		return nom;
@@ -42,11 +50,11 @@ public class User {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	public String getMail() {
-		return mail;
+	public String getEmail() {
+		return email;
 	}
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	public String getMdp() {
@@ -67,6 +75,11 @@ public class User {
 	public String getMdp2() {
 		return mdp2;
 	}
+	
+	public Timestamp getDate_verif() {
+		return date_verif;
+		}
+
 
 	public void setMdp2(String mdp2) {
 		this.mdp2 = mdp2;
@@ -75,6 +88,12 @@ public class User {
 	public void setDate_verif(Timestamp date_verif) {
 		   this.date_verif = date_verif; 
 		}
+
+	public int getSessionId() {
+		return this.id;
+	}
+
+	
 
 	
 	

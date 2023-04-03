@@ -20,6 +20,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import javax.swing.JComboBox;
@@ -108,54 +110,67 @@ public class Formulaire_gestionnairestock {
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		    	String nom = txtNom.getText();
+				
+				String nom = txtNom.getText();
 		        String prenom = txtPrenom.getText();
 		        String email = txtEmail.getText();
-		        String mdp = new String(passwordField_2.getPassword());
-		        String confirmationMdp = new String(passwordField_3.getPassword());
+		        String password = new String(passwordField_2.getPassword());
+		        String confirmPassword = new String(passwordField_3.getPassword());
 
-		        
-		        User user = new User();
-		        UserManager userManager = new UserManager();
-		        User Inscription_admin = null;
-				try {
-					Inscription_admin = userManager.Inscription_admin(user);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-		        if (Inscription_admin != null) {
-		            JOptionPane.showMessageDialog(frame, "Inscription r�ussie !");
+		        if (nom.equals("") || prenom.equals("") || email.equals("") || password.equals("") || confirmPassword.equals("")) {
+		            JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs.");
+		        } else if (!isValidEmail(email)) {
+		            JOptionPane.showMessageDialog(null, "Adresse email invalide.");
+		        } else if (!password.equals(confirmPassword)) {
+		            JOptionPane.showMessageDialog(null, "Les mots de passe ne correspondent pas.");
 		        } else {
-		            JOptionPane.showMessageDialog(frame, "L'inscription a �chou�. Veuillez r�essayer.");
-		            Database bdd = new Database();
-		            Connection co_bdd = bdd.getConnection();
 		            try {
-		            	PreparedStatement stm = co_bdd.prepareStatement(
-		            			"INSERT INTO utilisateur (nom, prenom, email, mdp, date_verif, role, reset_mdp) VALUES (?, ?, ?, md5(?), ?, ?, ?);");
-		            			stm.setString(1, nom);
-		            			stm.setString(2, prenom);
-		            			stm.setString(3, email);
-		            			stm.setString(4, mdp);
-		            			stm.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
-		            			stm.setInt(6, 2);
-		            			stm.setInt(7, 1);
-		                int res = stm.executeUpdate();
-		                if (res == 1) {
-		                    JOptionPane.showMessageDialog(null, "Insertion r�ussie !");
-		                }
+		                // Connection à la base de données
+		            	Database database = new Database();
+		            	Connection connection = database.getConnection();
+
+		                // Création de l'utilisateur
+		                user = new User();
+		                user.setNom(nom);
+		                user.setPrenom(prenom);
+		                user.setEmail(email);
+		                user.setMdp(password);
+
+		                // Ajout de l'utilisateur dans la base de données
+		                UserManager userManager = new UserManager();
+		                userManager.Inscription_stock(user, nom, prenom, email, password);
+
+		                JOptionPane.showMessageDialog(null, "Inscription réussie.");
+
+		                // Retour au choix de création de profil
+		                Choix_creation_profil Choix_creation_profil = new Choix_creation_profil();
+		                Choix_creation_profil.run();
+		                frame.dispose();
+
 		            } catch (SQLException ex) {
 		                ex.printStackTrace();
+		                JOptionPane.showMessageDialog(null, "Erreur lors de l'inscription.");
 		            }
 		        }
-				
-				
-			}
+		    }
+
+		private boolean isValidEmail(String email) {
+			// Utilisation d'une expression régulière pour vérifier si l'adresse email est valide
+			String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher(email);
+			return matcher.matches();
+		}
 		});
 		btnNewButton.setBounds(321, 134, 89, 23);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Retour");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.setBounds(321, 184, 89, 23);
 		frame.getContentPane().add(btnNewButton_1);

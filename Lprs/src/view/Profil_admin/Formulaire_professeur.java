@@ -3,20 +3,34 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 
+import database.Database;
+import manager.UserManager;
+import model.User;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
+
 public class Formulaire_professeur {
 
+	private User user;
 	private JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JPasswordField passwordField;
+	private JPasswordField passwordField_1;
 
 	/**
 	 * Launch the application.
@@ -66,24 +80,18 @@ public class Formulaire_professeur {
 		frame.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textField_3.setBounds(184, 137, 96, 20);
-		frame.getContentPane().add(textField_3);
-		textField_3.setColumns(10);
-		
 		JButton btnNewButton = new JButton("Retour");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+
+			}
+		});
 		btnNewButton.setBackground(Color.BLACK);
 		btnNewButton.setForeground(Color.DARK_GRAY);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNewButton.setBounds(191, 229, 89, 23);
 		frame.getContentPane().add(btnNewButton);
-		
-		textField_4 = new JTextField();
-		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField_4.setBounds(184, 169, 96, 20);
-		frame.getContentPane().add(textField_4);
-		textField_4.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nom");
 		lblNewLabel_1.setForeground(Color.DARK_GRAY);
@@ -116,10 +124,70 @@ public class Formulaire_professeur {
 		frame.getContentPane().add(lblNewLabel_5);
 		
 		JButton btnNewButton_1 = new JButton("Valider");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nom = textField.getText();
+		        String prenom = textField_1.getText();
+		        String email = textField_2.getText();
+		        String password = new String(passwordField.getPassword());
+		        String confirmPassword = new String(passwordField_1.getPassword());
+
+		        if (nom.equals("") || prenom.equals("") || email.equals("") || password.equals("") || confirmPassword.equals("")) {
+		            JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs.");
+		        } else if (!isValidEmail(email)) {
+		            JOptionPane.showMessageDialog(null, "Adresse email invalide.");
+		        } else if (!password.equals(confirmPassword)) {
+		            JOptionPane.showMessageDialog(null, "Les mots de passe ne correspondent pas.");
+		        } else {
+		            try {
+		                // Connection à la base de données
+		            	Database database = new Database();
+		            	Connection connection = database.getConnection();
+
+		                // Création de l'utilisateur
+		                user = new User();
+		                user.setNom(nom);
+		                user.setPrenom(prenom);
+		                user.setEmail(email);
+		                user.setMdp(password);
+
+		                // Ajout de l'utilisateur dans la base de données
+		                UserManager userManager = new UserManager();
+		                userManager.Inscription_prof(user, nom, prenom, email, password);
+
+		                JOptionPane.showMessageDialog(null, "Inscription réussie.");
+
+		                // Retour au choix de création de profil
+		                Choix_creation_profil Choix_creation_profil = new Choix_creation_profil();
+		                Choix_creation_profil.run();
+		                frame.dispose();
+
+		            } catch (SQLException ex) {
+		                ex.printStackTrace();
+		                JOptionPane.showMessageDialog(null, "Erreur lors de l'inscription.");
+		            }
+		        }
+		    }
+
+		private boolean isValidEmail(String email) {
+			// Utilisation d'une expression régulière pour vérifier si l'adresse email est valide
+			String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher(email);
+			return matcher.matches();
+		}
+		});
 		btnNewButton_1.setBackground(Color.DARK_GRAY);
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_1.setBounds(323, 105, 89, 23);
 		frame.getContentPane().add(btnNewButton_1);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(184, 142, 96, 19);
+		frame.getContentPane().add(passwordField);
+		
+		passwordField_1 = new JPasswordField();
+		passwordField_1.setBounds(184, 174, 96, 19);
+		frame.getContentPane().add(passwordField_1);
 	}
-
 }

@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
-public class Choix_creation_profil {
+public class Choix_creation_profil extends JFrame{
 
 	private JFrame frame;
 
@@ -46,18 +46,19 @@ public class Choix_creation_profil {
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Admin");
-		btnNewButton.setForeground(Color.LIGHT_GRAY);
+		btnNewButton.setBackground(Color.WHITE);
+		btnNewButton.setForeground(Color.DARK_GRAY);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Formulaire_inscription_admin Formulaire_inscription_admin = new Formulaire_inscription_admin();
 				Formulaire_inscription_admin.run();
 			}
 		});
-		btnNewButton.setBounds(172, 54, 85, 21);
+		btnNewButton.setBounds(172, 54, 116, 21);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnGestionnaireDeStock = new JButton("Gestionnaire de stock");
-		btnGestionnaireDeStock.setForeground(Color.LIGHT_GRAY);
+		btnGestionnaireDeStock.setForeground(Color.DARK_GRAY);
 		btnGestionnaireDeStock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Formulaire_gestionnairestock Formulaire_gestionnairestock = new Formulaire_gestionnairestock();
@@ -65,11 +66,11 @@ public class Choix_creation_profil {
 				
 			}
 		});
-		btnGestionnaireDeStock.setBounds(145, 95, 143, 21);
+		btnGestionnaireDeStock.setBounds(145, 95, 176, 21);
 		frame.getContentPane().add(btnGestionnaireDeStock);
 		
 		JButton btnProfesseur = new JButton("Professeur");
-		btnProfesseur.setForeground(Color.LIGHT_GRAY);
+		btnProfesseur.setForeground(Color.DARK_GRAY);
 		btnProfesseur.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Formulaire_professeur Formulaire_professeur = new Formulaire_professeur();
@@ -77,26 +78,26 @@ public class Choix_creation_profil {
 			}
 			
 		});
-		btnProfesseur.setBounds(172, 135, 85, 21);
+		btnProfesseur.setBounds(172, 135, 116, 21);
 		frame.getContentPane().add(btnProfesseur);
 		
 		JButton btnNewButton_1_1 = new JButton("S\u00E9cretaire");
-		btnNewButton_1_1.setForeground(Color.LIGHT_GRAY);
+		btnNewButton_1_1.setForeground(Color.DARK_GRAY);
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Formulaire_inscription_secretaire Formulaire_inscription_secretaire = new Formulaire_inscription_secretaire();
 				Formulaire_inscription_secretaire.run();
 			}
 		});
-		btnNewButton_1_1.setBounds(172, 178, 85, 21);
+		btnNewButton_1_1.setBounds(172, 178, 116, 21);
 		frame.getContentPane().add(btnNewButton_1_1);
 		
 		JButton btnNewButton_1_1_1 = new JButton("Retour");
-		btnNewButton_1_1_1.setForeground(Color.LIGHT_GRAY);
+		btnNewButton_1_1_1.setForeground(Color.BLACK);
 		btnNewButton_1_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Accueil_admin Accueil_admin = new Accueil_admin(null);
-				Accueil_admin.run();
+		        frame.dispose(); // Ferme la fenêtre courante
+		        
 			}
 		});
 		btnNewButton_1_1_1.setBounds(30, 232, 85, 21);

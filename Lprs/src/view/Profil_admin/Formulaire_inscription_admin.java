@@ -22,6 +22,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 
 public class Formulaire_inscription_admin {
@@ -87,8 +89,7 @@ public class Formulaire_inscription_admin {
 		JButton btnNewButton = new JButton("Retour");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Choix_creation_profil Choix_creation_profil = new Choix_creation_profil();
-				Choix_creation_profil.run();
+				frame.dispose();
 			}
 		});
 		btnNewButton.setBackground(new Color(255, 128, 128));
@@ -140,7 +141,7 @@ public class Formulaire_inscription_admin {
 		    public void actionPerformed(ActionEvent e) {
 		        
 		    	
-		    	String nom = textField.getText();
+		        String nom = textField.getText();
 		        String prenom = textField_1.getText();
 		        String email = textField_2.getText();
 		        String password = new String(passwordField.getPassword());
@@ -148,6 +149,8 @@ public class Formulaire_inscription_admin {
 
 		        if (nom.equals("") || prenom.equals("") || email.equals("") || password.equals("") || confirmPassword.equals("")) {
 		            JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs.");
+		        } else if (!isValidEmail(email)) {
+		            JOptionPane.showMessageDialog(null, "Adresse email invalide.");
 		        } else if (!password.equals(confirmPassword)) {
 		            JOptionPane.showMessageDialog(null, "Les mots de passe ne correspondent pas.");
 		        } else {
@@ -160,11 +163,11 @@ public class Formulaire_inscription_admin {
 		                user = new User();
 		                user.setNom(nom);
 		                user.setPrenom(prenom);
-		                user.setMail(email);
+		                user.setEmail(email);
 		                user.setMdp(password);
 
 		                // Ajout de l'utilisateur dans la base de données
-		                UserManager userManager = new UserManager(connection);
+		                UserManager userManager = new UserManager();
 		                userManager.Inscription_admin(user, nom, prenom, email, password);
 
 		                JOptionPane.showMessageDialog(null, "Inscription réussie.");
@@ -180,6 +183,7 @@ public class Formulaire_inscription_admin {
 		            }
 		        }
 		    }
+
 		});
 
 
@@ -188,6 +192,14 @@ public class Formulaire_inscription_admin {
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_1.setBounds(302, 117, 85, 21);
 		frame.getContentPane().add(btnNewButton_1);
+	}
+
+	private boolean isValidEmail(String email) {
+		// Utilisation d'une expression régulière pour vérifier si l'adresse email est valide
+		String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(email);
+		return matcher.matches();
 	}
 
 	
